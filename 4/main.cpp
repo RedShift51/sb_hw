@@ -172,7 +172,7 @@ private:
     Engine *current_engine = nullptr;
 };
 
-float getHighestPower(const std::vector<Vehicle*> v)
+float getHighestPower(const std::vector<Vehicle*>& v)
 {
     float ans = 0, current_power;
     Car* intermed_car;
