@@ -169,7 +169,7 @@ public:
 
 private:
     Wheel *wheels = nullptr;
-    Engine *current_engine;
+    Engine *current_engine = nullptr;
 };
 
 float getHighestPower(const std::vector<Vehicle*> v)
