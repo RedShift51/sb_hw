@@ -76,7 +76,7 @@ class Engine
 public:
     Engine() : power() { }
     Engine(float power) : power(power) { }
-    virtual float get_power() const
+    float get_power()
     {
         return power;
     }
@@ -85,7 +85,7 @@ private:
 };
 
 /* Bicycle, Car */
-class Bicycle : public RoadVehicle, public Wheel
+class Bicycle : public RoadVehicle
 {
 public:
     virtual ~Bicycle() 
@@ -122,7 +122,7 @@ private:
     Wheel *wheels = nullptr;
 };
 
-class Car : public RoadVehicle, public Wheel, public Engine
+class Car : public RoadVehicle
 {
 public:
     virtual ~Car()
@@ -142,12 +142,18 @@ public:
         wheels[3] = w3;
         current_engine = new Engine(engine);
     }
-
+    /*
     float get_power() const override
     {
         return (*current_engine).get_power();
     }
-
+    */
+    
+    float get_power()
+    {
+        return (*current_engine).get_power();
+    }
+    
     float get_clearance() const override
     {
         return RoadVehicle::get_clearance();
@@ -208,6 +214,11 @@ int main ()
     //std::cout << *c1 << std::endl;
 
     std::cout << getHighestPower(v) << std::endl;
+    
+    for (int i = v.size(); i > 0; --i)
+    {
+        delete v[i - 1];
+    }
 
     return 0;
 }
